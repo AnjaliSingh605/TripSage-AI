@@ -10,9 +10,9 @@ const Footer = () => {
         backgroundColor: theme.bgPanel,
         borderTop: `1px solid ${theme.border}`,
       }}
-      className="px-6 py-10 mt-20"
+      className="px-0 py-10 mt-20"
     >
-      <div className="max-w-6xl mx-auto flex flex-col gap-8">
+      <div className="w-full flex flex-col gap-8 md:px-3 lg:px-24">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between gap-6">
@@ -31,21 +31,13 @@ const Footer = () => {
           {/* Links */}
           <div className="flex gap-12">
             <div className="flex flex-col gap-2">
-              <h4 className="text-sm font-semibold text-white">
-                Product
-              </h4>
-              <span className="text-sm text-white/60 cursor-pointer hover:text-white">
-                Create Trip
-              </span>
-              <span className="text-sm text-white/60 cursor-pointer hover:text-white">
-                Features
-              </span>
+              <h4 className="text-sm font-semibold text-white">Product</h4>
+              <span className="text-sm text-white/60 cursor-pointer hover:text-white">Create Trip</span>
+              <span className="text-sm text-white/60 cursor-pointer hover:text-white">Features</span>
             </div>
 
             <div className="flex flex-col gap-2">
-              <h4 className="text-sm font-semibold text-white">
-                Contact
-              </h4>
+              <h4 className="text-sm font-semibold text-white">Contact</h4>
               <div className="flex items-center gap-2 text-sm text-white/60">
                 <Mail className="h-4 w-4" />
                 support@aitripplanner.com

@@ -1,33 +1,24 @@
 "use client";
 
-import { Globe2, Send, Plane, Building2, TreePalm } from "lucide-react";
+import { Globe2, Plane, Building2, TreePalm } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { theme } from "@/app/theme";
 import FeatureCards from "./Feature";
+import HowItWorks from "./HowItWork";
 
 export const suggestions = [
-  {
-    title: "Create new Trip",
-    icon: <Globe2 className="text-blue-400 h-5 w-5" />,
-  },
-  {
-    title: "Paris Gateway",
-    icon: <Plane className="text-green-500 h-5 w-5" />,
-  },
-  {
-    title: "Bali Escape",
-    icon: <TreePalm className="text-orange-400 h-5 w-5" />,
-  },
-  {
-    title: "Dubai Explorer",
-    icon: <Building2 className="text-blue-400 h-5 w-5" />,
-  },
+  { title: "Create new Trip", icon: <Globe2 className="text-blue-400 h-5 w-5" /> },
+  { title: "Paris Gateway", icon: <Plane className="text-green-500 h-5 w-5" /> },
+  { title: "Bali Escape", icon: <TreePalm className="text-orange-400 h-5 w-5" /> },
+  { title: "Dubai Explorer", icon: <Building2 className="text-blue-400 h-5 w-5" /> },
 ];
 
 const Hero = () => {
   const { user } = useUser();
   const router = useRouter();
+  const [message, setMessage] = useState("");
 
   const onSend = () => {
     if (!user) {
@@ -48,77 +39,27 @@ const Hero = () => {
     >
       {/* ================= HERO SECTION ================= */}
       <section
-        className="flex flex-col items-center text-center gap-6"
+        className="flex flex-col items-center text-center gap-6 w-full"
         style={{
           padding: "120px 40px 80px",
           background: `radial-gradient(circle at top, rgba(59,130,246,0.15), transparent)`,
         }}
       >
-        {/* Heading */}
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-3xl md:text-4xl font-bold w-full">
           Hey, I'm your personal{" "}
           <span className="text-[#444ce7]">Trip Planner</span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="max-w-xl text-[#94a3b8]">
+        <p className="w-full max-w-xl text-[#94a3b8]">
           Tell me what you want, and I'll handle the rest: Flights, Hotels, Trip
           Planning — all in seconds.
         </p>
 
-        {/* Input Box */}
-        <div className="w-full max-w-xl mt-4">
-          <div
-            style={{
-              position: "relative",
-              backgroundColor: "rgba(30, 41, 59, 0.4)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(59, 130, 246, 0.5)",
-              borderRadius: "16px",
-              padding: "16px",
-              boxShadow: "0 0 20px rgba(59, 130, 246, 0.2)",
-            }}
-          >
-            <textarea
-              placeholder="Create a trip for Paris from New York"
-              style={{
-                width: "100%",
-                height: "112px",
-                resize: "none",
-                backgroundColor: "transparent",
-                fontSize: "0.875rem",
-                color: "#ffffff",
-                outline: "none",
-                border: "none",
-                paddingRight: "48px",
-              }}
-            />
-
-            <button
-              onClick={onSend}
-              style={{
-                position: "absolute",
-                padding : "12px",
-                bottom: "16px",
-                right: "16px",
-                height: "40px",
-                width: "40px",
-                borderRadius: "8px",
-                backgroundColor: "#3b82f6",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <Send className="h-4 w-4 text-white" />
-            </button>
-          </div>
-        </div>
-
-        {/* Suggestions */}
-        <div className="flex flex-wrap justify-center gap-2 mt-4">
+        <div className="flex flex-wrap justify-center gap-2 mt-4 w-full">
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
+              onClick={onSend}
               className="flex items-center gap-2 border rounded-full px-3 py-1 
               cursor-pointer hover:bg-[#444ce7] hover:text-white transition"
             >
@@ -131,15 +72,24 @@ const Hero = () => {
 
       {/* ================= FEATURE SECTION ================= */}
       <section
-      id="features"
-        className="px-6 pb-24"
+        id="features"
+        className="w-full pb-24 px-4 md:px-8 lg:px-40"
         style={{
           background: `radial-gradient(circle at bottom, rgba(59,130,246,0.1), transparent)`,
         }}
       >
-        <div className="max-w-6xl mx-auto">
-          <FeatureCards />
-        </div>
+        <FeatureCards />
+      </section>
+
+      {/* ================= HOW IT WORKS SECTION ================= */}
+      <section
+        id="how-it-works"
+        className="w-full pb-24 px-4 md:px-8 lg:px-40"
+        style={{
+          background: `radial-gradient(circle at bottom, rgba(59,130,246,0.1), transparent)`,
+        }}
+      >
+        <HowItWorks />
       </section>
     </div>
   );

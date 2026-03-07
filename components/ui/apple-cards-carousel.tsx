@@ -31,7 +31,7 @@ export const CarouselContext = createContext<{
   onCardClose: (index: number) => void;
   currentIndex: number;
 }>({
-  onCardClose: () => { },
+  onCardClose: () => {},
   currentIndex: 0,
 });
 
@@ -70,7 +70,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
   const handleCardClose = (index: number) => {
     if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384; // (md:w-96)
+      const cardWidth = isMobile() ? 230 : 384;
       const gap = isMobile() ? 4 : 8;
       const scrollPosition = (cardWidth + gap) * (index + 1);
       carouselRef.current.scrollTo({
@@ -89,7 +89,8 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider
       value={{ onCardClose: handleCardClose, currentIndex }}
     >
-      <div className="relative w-full">
+      {/* overflow-hidden on outer div prevents carousel from bleeding outside page width */}
+      <div className="relative w-full overflow-hidden">
         <div
           className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
           ref={carouselRef}
@@ -97,14 +98,8 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
         >
           <div
             className={cn(
-              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l",
-            )}
-          ></div>
-
-          <div
-            className={cn(
               "flex flex-row justify-start gap-4 pl-4",
-              "mx-auto max-w-7xl", // remove max-w-4xl if you want the carousel to span the full width of its container
+              "mx-auto max-w-7xl",
             )}
           >
             {items.map((item, index) => (
@@ -153,7 +148,7 @@ export const Card = ({
 }: {
   card: CardType;
   index: number;
-  onClick: any,
+  onClick: any;
   layout?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
