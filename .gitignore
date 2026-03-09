@@ -10,12 +10,8 @@
 !.yarn/releases
 !.yarn/versions
 
-# Hide AI model implementation
-app/api/aimodel/
-
-# Hide internal APIs (optional)
-app/api/arcjet/
-app/api/google-place-data/
+#Ignore AI prompts
+lib/prompts/tripPrompts.ts
 
 # testing
 /coverage
