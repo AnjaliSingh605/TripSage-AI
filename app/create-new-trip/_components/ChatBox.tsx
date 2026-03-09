@@ -6,6 +6,7 @@ import axios from 'axios'
 import EmptyBoxState from './EmptyBoxState'
 import GroupSizeUi from './GroupSizeUi'
 import BudgetUi from './BudgetUi'
+import TripDurationUi from './TripDuration'
 import FinalUi from './FinalUi'
 import { useMutation } from 'convex/react'
 import { useTripDetail, useUserDetail } from '@/app/provider'
@@ -109,7 +110,9 @@ const ChatBox = () => {
       return <GroupSizeUi onSelectedOption={(v: string) => { setUserInput(v); onSend() }} />
     } else if (ui == 'final') {
       return <FinalUi viewTrip={(v: string) => { setUserInput(v); onSend() }} disable={!tripDetail} />
-    }
+    }  else if (ui == 'tripDuration') {
+      return <TripDurationUi onSelectedOption={(v: string) => { setUserInput(v); onSend() }} />
+  }
     return null;
   }
 

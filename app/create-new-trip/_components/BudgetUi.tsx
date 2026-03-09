@@ -22,21 +22,31 @@ export const SelectBudgetOptions = [
   }
 ];
 
-
-const BudgetUi = ({onSelectedOption}:any) => {
+const BudgetUi = ({ onSelectedOption }: any) => {
   return (
-      <div className="grid grid-cols-3 md:grid-cols-3 gap-2 items-center mt-1">
-          {SelectBudgetOptions .map((item, index)=>(
-            <div key={index} className='p-3 border rounded-2xl bg-white 
-            hover:border-[#444ce7] cursor-pointer flex flex-col items-center text-center'
-            onClick={()=>onSelectedOption(item.title+":"+item.desc)}>
-                <div className={`text-3xl p-3 rounded-full ${item.color}`}>{item.icon}</div>
-            <h2 className="text-lg font-semibold mt-2">{item.title}</h2>
-            <p className="text-sm text-gray-500">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-  )
-}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-2">
+      {SelectBudgetOptions.map((item, index) => (
+        <div
+          key={index}
+          className="p-3 border rounded-2xl bg-white hover:border-[#444ce7] cursor-pointer 
+          transition-all duration-200 hover:scale-[1.02] flex flex-col items-center text-center"
+          onClick={() => onSelectedOption(item.title + ":" + item.desc)}
+        >
+          <div className={`text-3xl p-3 rounded-full mb-2 ${item.color}`}>
+            {item.icon}
+          </div>
 
-export default BudgetUi
+          <h2 className="text-sm md:text-base font-semibold">
+            {item.title}
+          </h2>
+
+          <p className="text-xs md:text-sm text-gray-500 leading-tight">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default BudgetUi;
